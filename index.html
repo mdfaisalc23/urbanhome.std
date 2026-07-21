@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Urban Home Studio | Architectural & Structural Design</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; color: #333; }
+    :root { --primary: #1F2D3A; --accent: #D4AF37; --light: #F8F9FA; }
+
+    header { background: white; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+    nav { max-width: 1200px; margin: auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+  .logo { 
+  font-size: 1.8rem; 
+  font-weight: 700; 
+  letter-spacing: 1px;
+}
+.logo span:nth-child(1){ 
+  color: #000; /* Urban - Black */
+}
+.logo span:nth-child(2){ 
+  color: #D4AF37; /* Home - Gold/Urban Accent */
+}
+.logo span:nth-child(3){ 
+  color: #000; /* Studio - Black */
+  font-size: 1.2rem; /* Chhota */
+  font-family: 'Georgia', serif; /* Alag font */
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-left: 3px;
+}
+   .logo span:nth-child(3){ color: #000; } /* Studio - Red */
+    nav ul { display: flex; list-style: none; gap: 1.5rem; }
+    nav a { text-decoration: none; color: var(--primary); font-weight: 500; }
+    nav a:hover { color: var(--accent); }
+
+   .hero {
+      background: linear-gradient(rgba(31,45,58,0.75), rgba(31,45,58,0.75)), url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1931') center/cover;
+      height: 45vh; display: flex; align-items: center; justify-content: center; text-align: center; color: white; padding: 0 1rem;
+    }
+   .hero h2 { font-size: 2.8rem; margin-bottom: 1rem; }
+   .btn { background: var(--accent); color: var(--primary); padding: 14px 32px; border-radius: 5px; text-decoration: none; font-weight: bold; display: inline-block; margin: 5px; }
+   .btn-whatsapp { background: #25D366; color: white; }
+
+    section { padding: 80px 2rem; max-width: 1200px; margin: auto; }
+   .section-title { text-align: center; font-size: 2.2rem; margin-bottom: 3rem; color: var(--primary); }
+
+   .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+   .service-card { background: white; padding: 2rem; border-left: 4px solid var(--accent); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+
+   .software-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; }
+   .software-item { text-align: center; padding: 1.5rem; background: var(--light); border-radius: 8px; width: 180px; }
+
+   .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+   .portfolio-item { border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); cursor: pointer; transition: 0.3s; }
+   .portfolio-item:hover { transform: translateY(-5px); }
+   .portfolio-item img { width: 100%; height: 250px; object-fit: cover; }
+   .portfolio-info { padding: 1rem; background: white; }
+   .portfolio-info h4 { color: var(--primary); }
+
+    /* Portfolio Popup Window */
+   .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); justify-content: center; align-items: center; }
+   .modal-box { background: white; width: 90%; max-width: 900px; border-radius: 10px; overflow: hidden; position: relative; }
+   .modal-img { width: 100%; height: 500px; object-fit: cover; }
+   .modal-caption { padding: 1.5rem; text-align: center; background: var(--primary); color: white; }
+   .modal-caption h3 { margin-bottom: 0.5rem; color: var(--accent); }
+   .close { position: absolute; top: 15px; right: 20px; color: white; font-size: 35px; font-weight: bold; cursor: pointer; background: rgba(0,0,0,0.5); border-radius: 50%; width: 40px; height: 40px; text-align: center; line-height: 40px; }
+   .prev,.next { cursor: pointer; position: absolute; top: 45%; padding: 16px; color: white; font-weight: bold; font-size: 28px; background: rgba(0,0,0,0.5); border-radius: 5px; }
+   .next { right: 10px; }.prev { left: 10px; }
+   .prev:hover,.next:hover { background: rgba(0,0,0,0.8); }
+
+   .contact { background: var(--primary); color: white; text-align: center; }
+   .contact a { color: var(--accent); text-decoration: none; font-weight: bold; font-size: 1.2rem; }
+    footer { background: #0d141c; color: white; text-align: center; padding: 2rem; }
+    @media(max-width: 768px){ nav ul { display: none; }.hero h2 { font-size: 2rem; }.modal-img { height: 300px; } }
+    .founder-container {
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+  max-width: 1000px;
+  margin: auto;
+  background: white;
+  padding: 3rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+.founder-img img {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid var(--accent);
+}
+.founder-info h3 {
+  font-size: 2rem;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+.founder-info h4 {
+  color: var(--accent);
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+.founder-info p {
+  margin-bottom: 1rem;
+  line-height: 1.8;
+  color: #555;
+}
+.founder-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+}
+.founder-tags span {
+  background: var(--primary);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+@media(max-width: 768px){
+  .founder-container { flex-direction: column; text-align: center; padding: 2rem 1.5rem; }
+  .founder-img img { width: 200px; height: 200px; }
+}
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <h1 class="logo"><span>Urban</span> <span>Home</span> <span>Studio</span></h1>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#software">Software</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <div>
+      <h2>Architectural & Structural Design Experts</h2>
+      <p>From Concept to Construction - Designing Better Living</p>
+      <a href="https://wa.me/917455826896" target="_blank" class="btn btn-whatsapp">Message on WhatsApp</a>
+    </div>
+  </section>
+
+  <section id="services">
+    <h2 class="section-title">Our Services</h2>
+    <div class="services-grid">
+      <div class="service-card"><h3>Architectural Design</h3><p>2D Floor Plans, Elevations, Sections, 3D Views</p></div>
+      <div class="service-card"><h3>Structural Design</h3><p>Structural Plans, Foundation, Detailing using Staad Pro</p></div>
+      <div class="service-card"><h3>Steel Structures</h3><p>Steel Canopy, Steel Stairs, Steel Car Parking, Retaining Wall</p></div>
+    </div>
+  </section>
+
+  <section id="software" style="background: var(--light);">
+    <h2 class="section-title">Software We Use</h2>
+    <div class="software-grid">
+      <div class="software-item"><h4>AutoCAD</h4></div>
+      <div class="software-item"><h4>SketchUp</h4></div>
+      <div class="software-item"><h4>STAAD Pro</h4></div>
+      <div class="software-item"><h4>Lumion</h4></div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2 class="section-title">Our Projects & Portfolio</h2>
+    <div class="portfolio-grid">
+      <div class="portfolio-item" onclick="openModal(0)">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070" alt="">
+        <div class="portfolio-info"><h4>Residential Villa</h4><p>Click to view details</p></div>
+      </div>
+      <div class="portfolio-item" onclick="openModal(1)">
+        <img src="https://images.unsplash.com/photo-1613977257592-4871e5fcd7c4?q=80&w=2070" alt="">
+        <div class="portfolio-info"><h4>Commercial Building</h4><p>Click to view details</p></div>
+      </div>
+      <div class="portfolio-item" onclick="openModal(2)">
+        <img src="https://images.unsplash.com/photo-1616046229478-9901c5536a45?q=80&w=2070" alt="">
+        <div class="portfolio-info"><h4>Steel Structure</h4><p>Click to view details</p></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Portfolio Popup Window -->
+  <div id="portfolioModal" class="modal">
+    <div class="modal-box">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img id="modalImg" class="modal-img" src="">
+      <div class="modal-caption">
+        <h3 id="modalTitle">Title</h3>
+        <p id="modalDesc">Description</p>
+      </div>
+      <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+      <a class="next" onclick="changeSlide(1)">&#10095;</a>
+    </div>
+  </div>
+  <section id="founder" style="background: var(--light);">
+  <h2 class="section-title">Meet Our Founder</h2>
+  <div class="founder-container">
+    <div class="founder-img">
+      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1887" alt="Eymen Orhan">
+    </div>
+    <div class="founder-info">
+      <h3>Eymen Orhan</h3>
+      <h4>Structural Design Engineer & Founder</h4>
+      <p>With 4+ years of experience in delivering high-quality structural solutions, Eymen has worked on residential, commercial and steel projects across <b>USA and UK</b>.</p>
+      <p>He brings international design standards to Urban Home Studio, ensuring every structure is safe, efficient and cost-effective. His expertise in <b>STAAD Pro, AutoCAD and International Building Codes</b> helps us deliver world-class designs right here in Bihar.</p>
+      <div class="founder-tags">
+        <span>USA Projects</span>
+        <span>UK Projects</span>
+                <span>India Projects</span>
+        <span>Architectural Design</span>
+        <span>Structural Design</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <section class="contact" id="contact">
+    <h2 class="section-title" style="color:white;">Get In Touch</h2>
+    <p>💬 <a href="https://wa.me/917455826896" target="_blank">WhatsApp: 7455826896</a></p>
+    <p>📍Gaya, Bihar, India</p>
+    <br>
+    <a href="https://wa.me/917455826896" target="_blank" class="btn btn-whatsapp">Chat on WhatsApp</a>
+  </section>
+
+  <footer>
+    <p>© 2026 Urban Home Studio. All Rights Reserved.</p>
+  </footer>
+
+<script>
+  const portfolioData = [
+    { img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070", title: "Front Elevation", desc: "Modern Residential Villa - 3D Front Elevation Design" },
+    { img: "https://images.unsplash.com/photo-1613977257592-4871e5fcd7c4?q=80&w=2070", title: "Architectural Plan", desc: "2D Floor Plan Layout with Vastu Compliance" },
+    { img: "https://images.unsplash.com/photo-1616046229478-9901c5536a45?q=80&w=2070", title: "Foundation & Structural", desc: "RCC Foundation Plan and Column Detailing" },
+    { img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1931", title: "Section View", desc: "Building Section showing Beam, Slab and Height" }
+  ];
+  let currentSlide = 0;
+
+  function openModal(index) {
+    currentSlide = index;
+    updateModal();
+    document.getElementById("portfolioModal").style.display = "flex";
+  }
+  function closeModal() {
+    document.getElementById("portfolioModal").style.display = "none";
+  }
+  function changeSlide(n) {
+    currentSlide += n;
+    if(currentSlide >= portfolioData.length) currentSlide = 0;
+    if(currentSlide < 0) currentSlide = portfolioData.length - 1;
+    updateModal();
+  }
+  function updateModal() {
+    document.getElementById("modalImg").src = portfolioData[currentSlide].img;
+    document.getElementById("modalTitle").innerText = portfolioData[currentSlide].title;
+    document.getElementById("modalDesc").innerText = portfolioData[currentSlide].desc;
+  }
+  window.onclick = function(event) {
+    if (event.target == document.getElementById("portfolioModal")) closeModal();
+  }
+</script>
+
+</body>
+</html>
